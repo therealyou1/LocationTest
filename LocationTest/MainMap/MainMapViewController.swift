@@ -19,6 +19,7 @@ protocol MainMapViewInterface: class {
 
 class MainMapViewController: UIViewController {
   @IBOutlet weak var scoreLabel: UILabel!
+  @IBOutlet weak var placeButtonOutlet: UIButton!
   @IBOutlet weak var pointLabel: UILabel!
   @IBOutlet weak var nextCityLabel: UILabel!
   @IBOutlet weak var mapView: MKMapView!
@@ -29,6 +30,7 @@ class MainMapViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    placeButtonOutlet.isEnabled = false
     mapView.delegate = self
     
     presenter.viewIsReady(viewInterface: self)
@@ -40,6 +42,7 @@ class MainMapViewController: UIViewController {
     let currentAnnotationLocation = CLLocation(latitude: currentAnnotation.coordinate.latitude,
                                              longitude: currentAnnotation.coordinate.longitude)
     presenter.placeButtonWasTapped(withLocation: currentAnnotationLocation)
+    placeButtonOutlet.isEnabled = false
   }
   
   @IBAction func longPressOnMapHandler(_ sender: UILongPressGestureRecognizer) {
@@ -51,7 +54,7 @@ class MainMapViewController: UIViewController {
       annotation.coordinate = coordinates
       annotation.title = "your choice"
       mapView.addAnnotation(annotation)
-      
+      placeButtonOutlet.isEnabled = true
     }
   }
 }
@@ -59,7 +62,7 @@ class MainMapViewController: UIViewController {
 extension MainMapViewController: MainMapViewInterface {
   func configure(nextCity: City, citiesGuessed: Int, currentScore: Int) {
     mapView.removeAnnotations(mapView.annotations)
-    nextCityLabel.text = "Select the location of the" + nextCity.name
+    nextCityLabel.text = "Select the location of the \(nextCity.name)"
     scoreLabel.text = "\(currentScore) kilometers left"
     pointLabel.text = "\(citiesGuessed) cities guessed"
   }

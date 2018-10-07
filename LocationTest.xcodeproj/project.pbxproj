@@ -67,19 +67,51 @@
 			isa = PBXGroup;
 			children = (
 				E497E9E421627FE50038A9CB /* AppDelegate.swift */,
-				E497E9E621627FE50038A9CB /* MainMapViewController.swift */,
+				E497EA05216A8ED90038A9CB /* MainMap */,
 				E497E9E821627FE50038A9CB /* Main.storyboard */,
 				E497E9EB21627FE80038A9CB /* Assets.xcassets */,
-				E497E9F62162876A0038A9CB /* capitalCities.json */,
+				E497EA06216A8EE70038A9CB /* Resources */,
 				E497E9ED21627FE80038A9CB /* LaunchScreen.storyboard */,
 				E497E9F021627FE80038A9CB /* Info.plist */,
 				E497E9F8216287F40038A9CB /* City.swift */,
-				E497E9FC2163DD000038A9CB /* GeolocationManager.swift */,
-				E497E9FE2163DD130038A9CB /* ScoreManager.swift */,
-				E497EA002163DD510038A9CB /* DataProvider.swift */,
-				E497EA022163DE370038A9CB /* MainMapPresenter.swift */,
+				E497EA04216A8E8B0038A9CB /* Managers */,
+				E497EA07216A8EF40038A9CB /* Provider */,
 			);
 			path = LocationTest;
+			sourceTree = "<group>";
+		};
+		E497EA04216A8E8B0038A9CB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E497E9FC2163DD000038A9CB /* GeolocationManager.swift */,
+				E497E9FE2163DD130038A9CB /* ScoreManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E497EA05216A8ED90038A9CB /* MainMap */ = {
+			isa = PBXGroup;
+			children = (
+				E497E9E621627FE50038A9CB /* MainMapViewController.swift */,
+				E497EA022163DE370038A9CB /* MainMapPresenter.swift */,
+			);
+			path = MainMap;
+			sourceTree = "<group>";
+		};
+		E497EA06216A8EE70038A9CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E497E9F62162876A0038A9CB /* capitalCities.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E497EA07216A8EF40038A9CB /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				E497EA002163DD510038A9CB /* DataProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
