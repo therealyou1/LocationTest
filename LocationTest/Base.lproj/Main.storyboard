@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Map View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainMapViewController" customModule="LocationTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of cities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnt-jF-Z46">
+                                <rect key="frame" x="16" y="20" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kilometers left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxP-XQ-sQv">
+                                <rect key="frame" x="16" y="49" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSx-Md-q2G">
+                                <rect key="frame" x="16" y="78" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RVQ-pD-3IH">
+                                <rect key="frame" x="0.0" y="107" width="320" height="410"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6yb-HL-bSQ" appends="YES" id="f1K-HD-aCS"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txx-H7-vXp">
+                                <rect key="frame" x="258" y="525" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="placeButtonWasTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DzH-gy-khr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qnt-jF-Z46" secondAttribute="trailing" constant="16" id="3Hy-0x-DcI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RVQ-pD-3IH" secondAttribute="trailing" id="Hi4-2V-1OS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Txx-H7-vXp" secondAttribute="bottom" constant="13" id="JmK-Yv-NGM"/>
+                            <constraint firstItem="Txx-H7-vXp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="258" id="KWr-5b-1Lv"/>
+                            <constraint firstItem="kSx-Md-q2G" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="L53-kV-at8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zxP-XQ-sQv" secondAttribute="trailing" constant="16" id="QZo-wA-5em"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RVQ-pD-3IH" secondAttribute="bottom" constant="51" id="SRV-uQ-ep3"/>
+                            <constraint firstItem="qnt-jF-Z46" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Usy-Dr-1dh"/>
+                            <constraint firstItem="zxP-XQ-sQv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Xyl-Mm-zSX"/>
+                            <constraint firstItem="RVQ-pD-3IH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="87" id="Y15-Vp-DZA"/>
+                            <constraint firstItem="RVQ-pD-3IH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c8B-WO-vVk"/>
+                            <constraint firstItem="kSx-Md-q2G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="d1A-Wt-y8Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Txx-H7-vXp" secondAttribute="trailing" constant="16" id="dOp-CO-MqU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kSx-Md-q2G" secondAttribute="trailing" constant="16" id="jiF-2g-I2R"/>
+                            <constraint firstItem="kSx-Md-q2G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="lfA-W2-nBb"/>
+                            <constraint firstItem="qnt-jF-Z46" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sEI-YQ-zQa"/>
+                            <constraint firstItem="qnt-jF-Z46" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vuh-gd-nbz"/>
+                            <constraint firstItem="zxP-XQ-sQv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yEU-fo-8y6"/>
+                            <constraint firstItem="zxP-XQ-sQv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="29" id="zqf-Gt-BpM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="RVQ-pD-3IH" id="TpN-hP-tmi"/>
+                        <outlet property="nextCityLabel" destination="kSx-Md-q2G" id="Kx5-68-7z5"/>
+                        <outlet property="pointLabel" destination="zxP-XQ-sQv" id="VZg-UN-lon"/>
+                        <outlet property="scoreLabel" destination="qnt-jF-Z46" id="N66-OA-SwK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="6yb-HL-bSQ">
+                    <connections>
+                        <action selector="longPressOnMapHandler:" destination="BYZ-38-t0r" id="nHt-5z-obB"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="136.875" y="132.04225352112675"/>
+        </scene>
+    </scenes>
+</document>
