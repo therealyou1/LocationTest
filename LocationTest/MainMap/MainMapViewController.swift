@@ -27,7 +27,7 @@ class MainMapViewController: UIViewController {
   let presenter: MainMapPresenterInterface = MainMapPresenter()
   
   private var currentAnnotation: MKAnnotation?
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     placeButtonOutlet.isEnabled = false
@@ -36,11 +36,11 @@ class MainMapViewController: UIViewController {
     presenter.viewIsReady(viewInterface: self)
     mapView.mapType = .standard
   }
-
+  
   @IBAction func placeButtonWasTapped(_ sender: UIButton) {
     guard let currentAnnotation = currentAnnotation else { return }
     let currentAnnotationLocation = CLLocation(latitude: currentAnnotation.coordinate.latitude,
-                                             longitude: currentAnnotation.coordinate.longitude)
+                                               longitude: currentAnnotation.coordinate.longitude)
     presenter.placeButtonWasTapped(withLocation: currentAnnotationLocation)
     placeButtonOutlet.isEnabled = false
   }
@@ -75,7 +75,7 @@ extension MainMapViewController: MainMapViewInterface {
     alert.addAction(startNewGameAction)
     present(alert, animated: true, completion: nil)
   }
- 
+  
   func configure(with kilometers: String) {
     guard kilometers == "" else {return}
     pointLabel.text = kilometers
