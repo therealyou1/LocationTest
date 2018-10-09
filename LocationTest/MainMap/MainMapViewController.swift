@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
+import GooglePlaces
 
 protocol MainMapViewInterface: class {
   func configure(with cities: [City])
@@ -22,46 +23,43 @@ class MainMapViewController: UIViewController {
   @IBOutlet weak var placeButtonOutlet: UIButton!
   @IBOutlet weak var pointLabel: UILabel!
   @IBOutlet weak var nextCityLabel: UILabel!
-  @IBOutlet weak var mapView: MKMapView!
+  @IBOutlet weak var mapView: GMSMapView!
   
   let presenter: MainMapPresenterInterface = MainMapPresenter()
   
-  private var currentAnnotation: MKAnnotation?
+  private var currentMarker: GMSMarker?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     placeButtonOutlet.isEnabled = false
     mapView.delegate = self
     
+    do {
+      if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+        mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+      } else {
+        NSLog("Unable to find style.json")
+      }
+    } catch {
+      NSLog("One or more of the map styles failed to load. \(error)")
+    }
+    
     presenter.viewIsReady(viewInterface: self)
-    mapView.mapType = .standard
   }
   
   @IBAction func placeButtonWasTapped(_ sender: UIButton) {
-    guard let currentAnnotation = currentAnnotation else { return }
-    let currentAnnotationLocation = CLLocation(latitude: currentAnnotation.coordinate.latitude,
-                                               longitude: currentAnnotation.coordinate.longitude)
-    presenter.placeButtonWasTapped(withLocation: currentAnnotationLocation)
+    guard let currentMarker = currentMarker else { return }
+    let currentMarkerLocation = CLLocation(latitude: currentMarker.position.latitude,
+                                           longitude: currentMarker.position.longitude)
+    presenter.placeButtonWasTapped(withLocation: currentMarkerLocation)
     placeButtonOutlet.isEnabled = false
   }
   
-  @IBAction func longPressOnMapHandler(_ sender: UILongPressGestureRecognizer) {
-    if sender.state == .began {
-      mapView.removeAnnotations(mapView.annotations)
-      let location = sender.location(in: mapView)
-      let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
-      let annotation = MKPointAnnotation()
-      annotation.coordinate = coordinates
-      annotation.title = "your choice"
-      mapView.addAnnotation(annotation)
-      placeButtonOutlet.isEnabled = true
-    }
-  }
 }
 
 extension MainMapViewController: MainMapViewInterface {
   func configure(nextCity: City, citiesGuessed: Int, currentScore: Int) {
-    mapView.removeAnnotations(mapView.annotations)
+    mapView.clear()
     nextCityLabel.text = "Select the location of the \(nextCity.name)"
     scoreLabel.text = "\(currentScore) kilometers left"
     pointLabel.text = "\(citiesGuessed) cities guessed"
@@ -87,16 +85,21 @@ extension MainMapViewController: MainMapViewInterface {
   }
   
   func update(nextCity: City, citiesGuessed: Int, currentScore: Int) {
-    mapView.removeAnnotations(mapView.annotations)
+    mapView.clear()
     nextCityLabel.text = "Select the location of the" + nextCity.name
     scoreLabel.text = "\(currentScore) kilometers left"
     pointLabel.text = "\(citiesGuessed) cities guessed"
   }
 }
 
-extension MainMapViewController: MKMapViewDelegate {
-  func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-    guard let firstAnnotation = views.first?.annotation else { return }
-    currentAnnotation = firstAnnotation
+extension MainMapViewController: GMSMapViewDelegate {
+  func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+    mapView.clear()
+    let marker = GMSMarker()
+    currentMarker = marker
+    marker.position = coordinate
+    marker.title = "your choice"
+    marker.map = mapView
+    placeButtonOutlet.isEnabled = true
   }
 }
