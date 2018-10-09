@@ -57,8 +57,8 @@ extension MainMapPresenter: MainMapPresenterInterface {
       
       guard let nextCity = self.cities.first else { return }
       self.view?.configure(nextCity: nextCity,
-                        citiesGuessed: self.scoreManager.citiesGuessed,
-                        currentScore: self.scoreManager.currentScore)
+                           citiesGuessed: self.scoreManager.citiesGuessed,
+                           currentScore: self.scoreManager.currentScore)
     }
   }
   

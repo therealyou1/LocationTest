@@ -86,7 +86,7 @@ extension MainMapViewController: MainMapViewInterface {
     guard let firstCity = cities.first else { return }
     nextCityLabel.text = "Select the location of the \(firstCity.name)"
   }
-
+  
 }
 
 extension MainMapViewController: GMSMapViewDelegate {
