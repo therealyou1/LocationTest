@@ -13,7 +13,6 @@ import GooglePlaces
 protocol MainMapViewInterface: class {
   func configure(with cities: [City])
   func configure(with kilometers: String)
-  func update(nextCity: City, citiesGuessed: Int, currentScore: Int)
   func showTheEndOfTheGame()
   func configure(nextCity: City, citiesGuessed: Int, currentScore: Int)
 }
@@ -87,13 +86,7 @@ extension MainMapViewController: MainMapViewInterface {
     guard let firstCity = cities.first else { return }
     nextCityLabel.text = "Select the location of the \(firstCity.name)"
   }
-  
-  func update(nextCity: City, citiesGuessed: Int, currentScore: Int) {
-    mapView.clear()
-    nextCityLabel.text = "Select the location of the" + nextCity.name
-    scoreLabel.text = "\(currentScore) kilometers left"
-    pointLabel.text = "\(citiesGuessed) cities guessed"
-  }
+
 }
 
 extension MainMapViewController: GMSMapViewDelegate {
