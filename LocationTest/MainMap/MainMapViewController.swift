@@ -43,10 +43,10 @@ class MainMapViewController: UIViewController {
       if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
         mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
       } else {
-        NSLog("Unable to find style.json")
+        print("Unable to find style.json")
       }
     } catch {
-      NSLog("One or more of the map styles failed to load. \(error)")
+      print("One or more of the map styles failed to load. \(error)")
     }
   }
   
