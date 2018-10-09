@@ -34,6 +34,12 @@ class MainMapViewController: UIViewController {
     placeButtonOutlet.isEnabled = false
     mapView.delegate = self
     
+    configureMapView()
+    
+    presenter.viewIsReady(viewInterface: self)
+  }
+  
+  private func configureMapView() {
     do {
       if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
         mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
@@ -43,8 +49,6 @@ class MainMapViewController: UIViewController {
     } catch {
       NSLog("One or more of the map styles failed to load. \(error)")
     }
-    
-    presenter.viewIsReady(viewInterface: self)
   }
   
   @IBAction func placeButtonWasTapped(_ sender: UIButton) {
@@ -95,11 +99,10 @@ extension MainMapViewController: MainMapViewInterface {
 extension MainMapViewController: GMSMapViewDelegate {
   func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
     mapView.clear()
-    let marker = GMSMarker()
-    currentMarker = marker
-    marker.position = coordinate
-    marker.title = "your choice"
-    marker.map = mapView
+    currentMarker = GMSMarker()
+    currentMarker?.position = coordinate
+    currentMarker?.title = "your choice"
+    currentMarker?.map = mapView
     placeButtonOutlet.isEnabled = true
   }
 }
